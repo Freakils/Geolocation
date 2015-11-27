@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+</head>
+<body>
+
+	<div class="col-md-8">
+		<h1>Locations</h1>
+			<div id="location">
+			</div>
+			<button id= "button">show-location</button>
+	</div>
+
+	<div class="col-md-4">
+		<h1>Location2</h1>
+			<div id="location2">
+	  		</div>
+	  		<button id= "button3">second-location</button>
+	</div>
+		<h1>Distance</h1>
+	<div id="calculator">
+	</div>
+	<button id= "calbtn">Distance</button>
+	<button id= "button2">clear-location</button>
+</body>
+
+<script src="geolib.min.js">
+</script>
+
+<script>
+
+ var location_one = {latitude: "",
+						 longitude: ""};
+ var location_two = {latitude: "",
+						 longitude: ""};
+
+				
+var btn = document.getElementById("button");
+btn.addEventListener("click", function(){
+	navigator.geolocation.getCurrentPosition(function(location){
+		var loc = document.getElementById("location");
+		loc.innerHTML = location.coords.latitude +
+		"," + location.coords.longitude;
+		location_one.latitude = location.coords.latitude;
+		location_one.longitude = location.coords.longitude;
+		console.log(location_one);
+	});
+});
+
+var clrbtn = document.getElementById("button2");
+  	clrbtn.addEventListener("click", function(){
+		var loc = document.getElementById("location");
+						var location = loc.innerHTML = "";
+		var loc = document.getElementById("location2");
+						var location2 = loc.innerHTML = "";
+		var calbtn = document.getElementById("calbtn");
+			  var d = calculator.innerHTML = "";
+	});
+
+
+var locbtn = document.getElementById("button3");
+  		locbtn.addEventListener("click", function(){
+  			navigator.geolocation.getCurrentPosition(function(location){
+				var loc = document.getElementById("location2");
+				loc.innerHTML = location.coords.latitude +
+				"," + location.coords.longitude;
+				location_two.latitude = location.coords.latitude;
+				location_two.longitude = location.coords.longitude;
+				console.log(location_two);
+
+		  });
+});
+
+ 	 var calbtn = document.getElementById("calbtn");
+ 	 	calbtn.addEventListener("click", function(){
+ 	 	var d = geolib.getDistance(
+		    location_one,
+		    location_two
+		);
+		calculator.innerHTML = d; 
+
+ 	 		console.log(d);
+	});
+   
+</script>
+
+</html>
